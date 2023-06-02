@@ -1,0 +1,1670 @@
+{
+  "a": {
+    "region_name":"Iridium Example a",
+    "region":"a",
+    "provider":"Sample",
+    "network_cost": {
+      "a": 0,
+      "b": 1,
+      "c": 1
+    }
+  },
+  "b": {
+    "region_name":"Iridium Example b",
+    "region":"b",
+    "provider":"Sample",
+    "network_cost": {
+      "a": 3,
+      "b": 0,
+      "c": 3
+    }
+  },
+  "c": {
+    "region_name":"Iridium Example c",
+    "region":"c",
+    "provider":"Sample",
+    "network_cost": {
+      "a": 8,
+      "b": 8,
+      "c": 0
+    }
+  },
+  "aws-us-east": {
+    "region_name":"N. Virginia",
+    "region":"US East",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0,
+      "aws-us-east-2": 0.01,
+      "aws-us-west": 0.02,
+      "aws-us-west-2": 0.02,
+      "aws-ca-central": 0.02,
+      "aws-eu-west": 0.02,
+      "aws-eu-west-2": 0.02,
+      "aws-eu-central": 0.02,
+      "aws-asia-se": 0.02,
+      "aws-asia-se-2": 0.02,
+      "aws-asia-ne": 0.02,
+      "aws-asia-ne-2": 0.02,
+      "aws-asia-south": 0.02,
+      "aws-sa-east": 0.02,
+      "azure-us-east": 0.09,
+      "azure-us-west": 0.09,
+      "azure-eu-west": 0.09,
+      "azure-eu-north": 0.09,
+      "azure-asia-ne": 0.09,
+      "azure-asia-se": 0.09,
+      "azure-sa-east": 0.09
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.1,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.125,
+        "get_request_cost": 0.072,
+        "put_request_cost": 0.072,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.045,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.025,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.023,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.0125,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "aws-us-east-2": {
+    "region_name":"Ohio",
+    "region":"US East 2",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.01,
+      "aws-us-east-2": 0,
+      "aws-us-west": 0.02,
+      "aws-us-west-2": 0.02,
+      "aws-ca-central": 0.02,
+      "aws-eu-west": 0.02,
+      "aws-eu-west-2": 0.02,
+      "aws-eu-central": 0.02,
+      "aws-asia-se": 0.02,
+      "aws-asia-se-2": 0.02,
+      "aws-asia-ne": 0.02,
+      "aws-asia-ne-2": 0.02,
+      "aws-asia-south": 0.02,
+      "aws-sa-east": 0.02,
+      "azure-us-east": 0.09,
+      "azure-us-west": 0.09,
+      "azure-eu-west": 0.09,
+      "azure-eu-north": 0.09,
+      "azure-asia-ne": 0.09,
+      "azure-asia-se": 0.09,
+      "azure-sa-east": 0.09
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.1,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.125,
+        "get_request_cost": 0.065,
+        "put_request_cost": 0.065,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.045,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.025,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.023,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.0125,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "aws-us-west": {
+    "region_name":"N. California",
+    "region":"US West",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.02,
+      "aws-us-east-2": 0.02,
+      "aws-us-west": 0,
+      "aws-us-west-2": 0.02,
+      "aws-ca-central": 0.02,
+      "aws-eu-west": 0.02,
+      "aws-eu-west-2": 0.02,
+      "aws-eu-central": 0.02,
+      "aws-asia-se": 0.02,
+      "aws-asia-se-2": 0.02,
+      "aws-asia-ne": 0.02,
+      "aws-asia-ne-2": 0.02,
+      "aws-asia-south": 0.02,
+      "aws-sa-east": 0.02,
+      "azure-us-east": 0.09,
+      "azure-us-west": 0.09,
+      "azure-eu-west": 0.09,
+      "azure-eu-north": 0.09,
+      "azure-asia-ne": 0.09,
+      "azure-asia-se": 0.09,
+      "azure-sa-east": 0.09
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.12,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.138,
+        "get_request_cost": 0.072,
+        "put_request_cost": 0.072,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.054,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.03,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.026,
+        "get_request_cost": 4.4e-7,
+        "put_request_cost": 0.0000055,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.019,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.0264,
+        "get_request_cost": 0.00000044,
+        "put_request_cost": 0.0000055,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+   "aws-us-west-2": {
+    "region_name":"Oregon",
+    "region":"US West 2",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.02,
+      "aws-us-east-2": 0.02,
+      "aws-us-west": 0.02,
+      "aws-us-west-2": 0,
+      "aws-ca-central": 0.02,
+      "aws-eu-west": 0.02,
+      "aws-eu-west-2": 0.02,
+      "aws-eu-central": 0.02,
+      "aws-asia-se": 0.02,
+      "aws-asia-se-2": 0.02,
+      "aws-asia-ne": 0.02,
+      "aws-asia-ne-2": 0.02,
+      "aws-asia-south": 0.02,
+      "aws-sa-east": 0.02,
+      "azure-us-east": 0.09,
+      "azure-us-west": 0.09,
+      "azure-eu-west": 0.09,
+      "azure-eu-north": 0.09,
+      "azure-asia-ne": 0.09,
+      "azure-asia-se": 0.09,
+      "azure-sa-east": 0.09
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.1,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.125,
+        "get_request_cost": 0.065,
+        "put_request_cost": 0.065,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.045,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.025,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.023,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.0125,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "aws-ca-central": {
+    "region_name":"Canada",
+    "region":"Canada Central",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.02,
+      "aws-us-east-2": 0.02,
+      "aws-us-west": 0.02,
+      "aws-us-west-2": 0.02,
+      "aws-ca-central": 0,
+      "aws-eu-west": 0.02,
+      "aws-eu-west-2": 0.02,
+      "aws-eu-central": 0.02,
+      "aws-asia-se": 0.02,
+      "aws-asia-se-2": 0.02,
+      "aws-asia-ne": 0.02,
+      "aws-asia-ne-2": 0.02,
+      "aws-asia-south": 0.02,
+      "aws-sa-east": 0.02,
+      "azure-us-east": 0.09,
+      "azure-us-west": 0.09,
+      "azure-eu-west": 0.09,
+      "azure-eu-north": 0.09,
+      "azure-asia-ne": 0.09,
+      "azure-asia-se": 0.09,
+      "azure-sa-east": 0.09
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.11,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.138,
+        "get_request_cost": 0.072,
+        "put_request_cost": 0.072,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.05,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.028,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.025,
+        "get_request_cost": 0.00000044,
+        "put_request_cost": 0.0000055,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.0138,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.0264,
+        "get_request_cost": 0.00000044,
+        "put_request_cost": 0.0000055,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },  
+  "aws-eu-west": {
+    "region_name":"Ireland",
+    "region":"EU West",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.02,
+      "aws-us-east-2": 0.02,
+      "aws-us-west": 0.02,
+      "aws-us-west-2": 0.02,
+      "aws-ca-central": 0.02,
+      "aws-eu-west": 0,
+      "aws-eu-west-2": 0.02,
+      "aws-eu-central": 0.02,
+      "aws-asia-se": 0.02,
+      "aws-asia-se-2": 0.02,
+      "aws-asia-ne": 0.02,
+      "aws-asia-ne-2": 0.02,
+      "aws-asia-south": 0.02,
+      "aws-sa-east": 0.02,
+      "azure-us-east": 0.09,
+      "azure-us-west": 0.09,
+      "azure-eu-west": 0.09,
+      "azure-eu-north": 0.09,
+      "azure-asia-ne": 0.09,
+      "azure-asia-se": 0.09,
+      "azure-sa-east": 0.09
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.11,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.138,
+        "get_request_cost": 0.072,
+        "put_request_cost": 0.072,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.05,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.028,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.023,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.0125,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "aws-eu-west-2": {
+    "region_name":"London",
+    "region":"EU West 2",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.02,
+      "aws-us-east-2": 0.02,
+      "aws-us-west": 0.02,
+      "aws-us-west-2": 0.02,
+      "aws-ca-central": 0.02,
+      "aws-eu-west": 0.02,
+      "aws-eu-west-2": 0,
+      "aws-eu-central": 0.02,
+      "aws-asia-se": 0.02,
+      "aws-asia-se-2": 0.02,
+      "aws-asia-ne": 0.02,
+      "aws-asia-ne-2": 0.02,
+      "aws-asia-south": 0.02,
+      "aws-sa-east": 0.02,
+      "azure-us-east": 0.09,
+      "azure-us-west": 0.09,
+      "azure-eu-west": 0.09,
+      "azure-eu-north": 0.09,
+      "azure-asia-ne": 0.09,
+      "azure-asia-se": 0.09,
+      "azure-sa-east": 0.09
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.116,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.145,
+        "get_request_cost": 0.076,
+        "put_request_cost": 0.076,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.053,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.029,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.00000042,
+        "put_request_cost": 0.0000053,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.0131,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.0252,
+        "get_request_cost": 0.00000042,
+        "put_request_cost": 0.0000053,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "aws-eu-central": {
+    "region_name":"Frankfurt",
+    "region":"EU Central",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.02,
+      "aws-us-east-2": 0.02,
+      "aws-us-west": 0.02,
+      "aws-us-west-2": 0.02,
+      "aws-ca-central": 0.02,
+      "aws-eu-west": 0.02,
+      "aws-eu-west-2": 0.02,
+      "aws-eu-central": 0,
+      "aws-asia-se": 0.02,
+      "aws-asia-se-2": 0.02,
+      "aws-asia-ne": 0.02,
+      "aws-asia-ne-2": 0.02,
+      "aws-asia-south": 0.02,
+      "aws-sa-east": 0.02,
+      "azure-us-east": 0.09,
+      "azure-us-west": 0.09,
+      "azure-eu-west": 0.09,
+      "azure-eu-north": 0.09,
+      "azure-asia-ne": 0.09,
+      "azure-asia-se": 0.09,
+      "azure-sa-east": 0.09
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.119,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.149,
+        "get_request_cost": 0.078,
+        "put_request_cost": 0.078,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.054,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.03,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.0245,
+        "get_request_cost": 0.00000043,
+        "put_request_cost": 0.0000054,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.0135,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.026,
+        "get_request_cost": 0.00000043,
+        "put_request_cost": 0.0000054,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "aws-asia-se": {
+    "region_name":"Singapore",
+    "region":"Asia SE",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.09,
+      "aws-us-east-2": 0.09,
+      "aws-us-west": 0.09,
+      "aws-us-west-2": 0.09,
+      "aws-ca-central": 0.09,
+      "aws-eu-west": 0.09,
+      "aws-eu-west-2": 0.09,
+      "aws-eu-central": 0.09,
+      "aws-asia-se": 0,
+      "aws-asia-se-2": 0.09,
+      "aws-asia-ne": 0.09,
+      "aws-asia-ne-2": 0.09,
+      "aws-asia-south": 0.09,
+      "aws-sa-east": 0.09,
+      "azure-us-east": 0.12,
+      "azure-us-west": 0.12,
+      "azure-eu-west": 0.12,
+      "azure-eu-north": 0.12,
+      "azure-asia-ne": 0.12,
+      "azure-asia-se": 0.12,
+      "azure-sa-east": 0.12
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.12,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.138,
+        "get_request_cost": 0.072,
+        "put_request_cost": 0.072,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.054,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.03,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.025,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.02,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "aws-asia-se-2": {
+    "region_name":"Sydney",
+    "region":"Asia SE 2",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.14,
+      "aws-us-east-2": 0.14,
+      "aws-us-west": 0.14,
+      "aws-us-west-2": 0.14,
+      "aws-ca-central": 0.14,
+      "aws-eu-west": 0.14,
+      "aws-eu-west-2": 0.14,
+      "aws-eu-central": 0.14,
+      "aws-asia-se": 0.14,
+      "aws-asia-se-2": 0,
+      "aws-asia-ne": 0.14,
+      "aws-asia-ne-2": 0.14,
+      "aws-asia-south": 0.14,
+      "aws-sa-east": 0.14,
+      "azure-us-east": 0.14,
+      "azure-us-west": 0.14,
+      "azure-eu-west": 0.14,
+      "azure-eu-north": 0.14,
+      "azure-asia-ne": 0.14,
+      "azure-asia-se": 0.14,
+      "azure-sa-east": 0.14
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.12,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.138,
+        "get_request_cost": 0.072,
+        "put_request_cost": 0.072,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.054,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.03,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.025,
+        "get_request_cost": 0.00000044,
+        "put_request_cost": 0.0000055,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.019,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.0264,
+        "get_request_cost": 0.00000044,
+        "put_request_cost": 0.0000055,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },  
+  "aws-asia-ne": {
+    "region_name":"Tokyo",
+    "region":"Asia NE",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.09,
+      "aws-us-east-2": 0.09,
+      "aws-us-west": 0.09,
+      "aws-us-west-2": 0.09,
+      "aws-ca-central": 0.09,
+      "aws-eu-west": 0.09,
+      "aws-eu-west-2": 0.09,
+      "aws-eu-central": 0.09,
+      "aws-asia-se": 0.09,
+      "aws-asia-se-2": 0.09,
+      "aws-asia-ne": 0,
+      "aws-asia-ne-2": 0.09,
+      "aws-asia-south": 0.09,
+      "aws-sa-east": 0.09,
+      "azure-us-east": 0.14,
+      "azure-us-west": 0.14,
+      "azure-eu-west": 0.14,
+      "azure-eu-north": 0.14,
+      "azure-asia-ne": 0.14,
+      "azure-asia-se": 0.14,
+      "azure-sa-east": 0.14
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.12,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.142,
+        "get_request_cost": 0.074,
+        "put_request_cost": 0.074,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.054,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.03,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.025,
+        "get_request_cost": 0.00000037,
+        "put_request_cost": 0.0000047,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.019,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.0264,
+        "get_request_cost": 0.00000037,
+        "put_request_cost": 0.0000047,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "aws-asia-ne-2": {
+    "region_name":"Seoul",
+    "region":"Asia NE",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.08,
+      "aws-us-east-2": 0.08,
+      "aws-us-west": 0.08,
+      "aws-us-west-2": 0.08,
+      "aws-ca-central": 0.08,
+      "aws-eu-west": 0.08,
+      "aws-eu-west-2": 0.08,
+      "aws-eu-central": 0.08,
+      "aws-asia-se": 0.08,
+      "aws-asia-se-2": 0.08,
+      "aws-asia-ne": 0.08,
+      "aws-asia-ne-2": 0,
+      "aws-asia-south": 0.08,
+      "aws-sa-east": 0.08,
+      "azure-us-east": 0.126,
+      "azure-us-west": 0.126,
+      "azure-eu-west": 0.126,
+      "azure-eu-north": 0.126,
+      "azure-asia-ne": 0.126,
+      "azure-asia-se": 0.126,
+      "azure-sa-east": 0.126
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.114,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.128,
+        "get_request_cost": 0.067,
+        "put_request_cost": 0.067,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.051,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.029,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.025,
+        "get_request_cost": 0.00000035,
+        "put_request_cost": 0.0000045,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.019,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.0251,
+        "get_request_cost": 0.00000035,
+        "put_request_cost": 0.0000045,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "aws-asia-south": {
+    "region_name":"Mumbai",
+    "region":"Asia NE",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.086,
+      "aws-us-east-2": 0.086,
+      "aws-us-west": 0.086,
+      "aws-us-west-2": 0.086,
+      "aws-ca-central": 0.086,
+      "aws-eu-west": 0.086,
+      "aws-eu-west-2": 0.086,
+      "aws-eu-central": 0.086,
+      "aws-asia-se": 0.086,
+      "aws-asia-se-2": 0.086,
+      "aws-asia-ne": 0.086,
+      "aws-asia-ne-2": 0.086,
+      "aws-asia-south": 0,
+      "aws-sa-east": 0.086,
+      "azure-us-east": 0.1093,
+      "azure-us-west": 0.1093,
+      "azure-eu-west": 0.1093,
+      "azure-eu-north": 0.1093,
+      "azure-asia-ne": 0.1093,
+      "azure-asia-se": 0.1093,
+      "azure-sa-east": 0.1093
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.114,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.131,
+        "get_request_cost": 0.068,
+        "put_request_cost": 0.068,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.051,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.029,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.025,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.019,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "aws-sa-east": {
+    "region_name":"Sao Paulo",
+    "region":"South America East",
+    "provider":"Amazon",
+    "network_cost": {
+      "aws-us-east": 0.16,
+      "aws-us-east-2": 0.16,
+      "aws-us-west": 0.16,
+      "aws-us-west-2": 0.16,
+      "aws-ca-central": 0.16,
+      "aws-eu-west": 0.16,
+      "aws-eu-west-2": 0.16,
+      "aws-eu-central": 0.16,
+      "aws-asia-se": 0.16,
+      "aws-asia-se-2": 0.16,
+      "aws-asia-ne": 0.16,
+      "aws-asia-ne-2": 0.16,
+      "aws-asia-south": 0.16,
+      "aws-sa-east": 0,
+      "azure-us-east": 0.25,
+      "azure-us-west": 0.25,
+      "azure-eu-west": 0.25,
+      "azure-eu-north": 0.25,
+      "azure-asia-ne": 0.25,
+      "azure-asia-se": 0.25,
+      "azure-sa-east": 0.25
+    },
+    "storage_cost": {
+      "ebs-gp2": {
+        "storage_cost": 0.19,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-io1": {
+        "storage_cost": 0.238,
+        "get_request_cost": 0.091,
+        "put_request_cost": 0.091,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-st1": {
+        "storage_cost": 0.086,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "ebs-sc1": {
+        "storage_cost": 0.048,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3": {
+        "storage_cost": 0.0405,
+        "get_request_cost": 0.00000056,
+        "put_request_cost": 0.000007,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "s3-ia": {
+        "storage_cost": 0.026,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0
+      },
+      "s3-rrs": {
+        "storage_cost": 0.0326,
+        "get_request_cost": 0.00000056,
+        "put_request_cost": 0.000007,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "azure-us-east": {
+    "region_name":"East US",
+    "region":"US East",
+    "provider":"Microsoft",
+    "network_cost": {
+      "aws-us-east": 0.087,
+      "aws-us-east-2": 0.087,
+      "aws-us-west": 0.087,
+      "aws-us-west-2": 0.087,
+      "aws-ca-central": 0.087,
+      "aws-eu-west": 0.087,
+      "aws-eu-west-2": 0.087,
+      "aws-eu-central": 0.087,
+      "aws-asia-se": 0.138,
+      "aws-asia-se-2": 0.138,
+      "aws-asia-ne": 0.138,
+      "aws-asia-ne-2": 0.138,
+      "aws-asia-south": 0.138,
+      "aws-sa-east": 0.181,
+      "azure-us-east": 0,
+      "azure-us-west": 0.087,
+      "azure-eu-west": 0.087,
+      "azure-eu-north": 0.087,
+      "azure-asia-ne": 0.138,
+      "azure-asia-se": 0.138,
+      "azure-sa-east": 0.181
+    },
+    "storage_cost": {
+      "blob-lrs-cool": {
+        "storage_cost": 0.017,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0.0025
+      },
+      "blob-lrs-hot": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "premium-p10": {
+        "storage_cost": 0.154,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+	    	"data_write": 0
+      },
+      "standard-disk": {
+        "storage_cost": 0.05,
+        "get_request_cost": 0.000000036,
+        "put_request_cost": 0.000000036,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "azure-us-west": {
+    "region_name":"West US",
+    "region":"US West",
+    "provider":"Microsoft",
+    "network_cost": {
+      "aws-us-east": 0.087,
+      "aws-us-east-2": 0.087,
+      "aws-us-west": 0.087,
+      "aws-us-west-2": 0.087,
+      "aws-ca-central": 0.087,
+      "aws-eu-west": 0.087,
+      "aws-eu-west-2": 0.087,
+      "aws-eu-central": 0.087,
+      "aws-asia-se": 0.138,
+      "aws-asia-se-2": 0.138,
+      "aws-asia-ne": 0.138,
+      "aws-asia-ne-2": 0.138,
+      "aws-asia-south": 0.138,
+      "aws-sa-east": 0.181,
+      "azure-us-east": 0.087,
+      "azure-us-west": 0,
+      "azure-eu-west": 0.087,
+      "azure-eu-north": 0.087,
+      "azure-asia-ne": 0.138,
+      "azure-asia-se": 0.138,
+      "azure-sa-east": 0.181
+    },
+    "storage_cost": {
+      "blob-lrs-cool": {
+        "storage_cost": 0.017,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0.0025
+      },
+      "blob-lrs-hot": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.00000044,
+        "put_request_cost": 0.0000055,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "premium-p10": {
+        "storage_cost": 0.154,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "standard-disk": {
+        "storage_cost": 0.05,
+        "get_request_cost": 0.000000036,
+        "put_request_cost": 0.000000036,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "azure-eu-west": {
+    "region_name":"West Europe",
+    "region":"EU West",
+    "provider":"Microsoft",
+    "network_cost": {
+      "aws-us-east": 0.087,
+      "aws-us-east-2": 0.087,
+      "aws-us-west": 0.087,
+      "aws-us-west-2": 0.087,
+      "aws-ca-central": 0.087,
+      "aws-eu-west": 0.087,
+      "aws-eu-west-2": 0.087,
+      "aws-eu-central": 0.087,
+      "aws-asia-se": 0.138,
+      "aws-asia-se-2": 0.138,
+      "aws-asia-ne": 0.138,
+      "aws-asia-ne-2": 0.138,
+      "aws-asia-south": 0.138,
+      "aws-sa-east": 0.181,
+      "azure-us-east": 0.087,
+      "azure-us-west": 0.087,
+      "azure-eu-west": 0,
+      "azure-eu-north": 0.087,
+      "azure-asia-ne": 0.138,
+      "azure-asia-se": 0.138,
+      "azure-sa-east": 0.181
+    },
+    "storage_cost": {
+      "blob-lrs-cool": {
+        "storage_cost": 0.01,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0.0025
+      },
+      "blob-lrs-hot": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.0000054,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "premium-p10": {
+        "storage_cost": 0.17,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+		"data_write": 0
+      },
+      "standard-disk": {
+        "storage_cost": 0.05,
+        "get_request_cost": 0.000000036,
+        "put_request_cost": 0.000000036,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "azure-eu-north": {
+    "region_name":"North Europe",
+    "region":"EU North",
+    "provider":"Microsoft",
+    "network_cost": {
+      "aws-us-east": 0.087,
+      "aws-us-east-2": 0.087,
+      "aws-us-west": 0.087,
+      "aws-us-west-2": 0.087,
+      "aws-ca-central": 0.087,
+      "aws-eu-west": 0.087,
+      "aws-eu-west-2": 0.087,
+      "aws-eu-central": 0.087,
+      "aws-asia-se": 0.138,
+      "aws-asia-se-2": 0.138,
+      "aws-asia-ne": 0.138,
+      "aws-asia-ne-2": 0.138,
+      "aws-asia-south": 0.138,
+      "aws-sa-east": 0.181,
+      "azure-us-east": 0.087,
+      "azure-us-west": 0.087,
+      "azure-eu-west": 0.087,
+      "azure-eu-north": 0,
+      "azure-asia-ne": 0.138,
+      "azure-asia-se": 0.138,
+      "azure-sa-east": 0.181
+    },
+    "storage_cost": {
+      "blob-lrs-cool": {
+        "storage_cost": 0.01,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0.0025
+      },
+      "blob-lrs-hot": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.0000054,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "premium-p10": {
+        "storage_cost": 0.154,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+		"data_write": 0
+      },
+      "standard-disk": {
+        "storage_cost": 0.05,
+        "get_request_cost": 0.000000036,
+        "put_request_cost": 0.000000036,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "azure-asia-ne": {
+    "region_name":"Japan East",
+    "region":"Asia NE",
+    "provider":"Microsoft",
+    "network_cost": {
+      "aws-us-east": 0.087,
+      "aws-us-east-2": 0.087,
+      "aws-us-west": 0.087,
+      "aws-us-west-2": 0.087,
+      "aws-ca-central": 0.087,
+      "aws-eu-west": 0.087,
+      "aws-eu-west-2": 0.087,
+      "aws-eu-central": 0.087,
+      "aws-asia-se": 0.138,
+      "aws-asia-se-2": 0.138,
+      "aws-asia-ne": 0.138,
+      "aws-asia-ne-2": 0.138,
+      "aws-asia-south": 0.138,
+      "aws-sa-east": 0.181,
+      "azure-us-east": 0.087,
+      "azure-us-west": 0.087,
+      "azure-eu-west": 0.087,
+      "azure-eu-north": 0.087,
+      "azure-asia-ne": 0,
+      "azure-asia-se": 0.138,
+      "azure-sa-east": 0.181
+    },
+    "storage_cost": {
+      "blob-lrs-cool": {
+        "storage_cost": 0.015,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0.0025
+      },
+      "blob-lrs-hot": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "premium-p10": {
+        "storage_cost": 0.177,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+		"data_write": 0
+      },
+      "standard-disk": {
+        "storage_cost": 0.05,
+        "get_request_cost": 0.000000036,
+        "put_request_cost": 0.000000036,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "azure-asia-se": {
+    "region_name":"Southeast Asia",
+    "region":"Asia SE",
+    "provider":"Microsoft",
+    "network_cost": {
+      "aws-us-east": 0.087,
+      "aws-us-east-2": 0.087,
+      "aws-us-west": 0.087,
+      "aws-us-west-2": 0.087,
+      "aws-ca-central": 0.087,
+      "aws-eu-west": 0.087,
+      "aws-eu-west-2": 0.087,
+      "aws-eu-central": 0.087,
+      "aws-asia-se": 0.138,
+      "aws-asia-se-2": 0.138,
+      "aws-asia-ne": 0.138,
+      "aws-asia-ne-2": 0.138,
+      "aws-asia-south": 0.138,
+      "aws-sa-east": 0.181,
+      "azure-us-east": 0.087,
+      "azure-us-west": 0.087,
+      "azure-eu-west": 0.087,
+      "azure-eu-north": 0.087,
+      "azure-asia-ne": 0.138,
+      "azure-asia-se": 0,
+      "azure-sa-east": 0.181
+    },
+    "storage_cost": {
+      "blob-lrs-cool": {
+        "storage_cost": 0.016,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0.0025
+      },
+      "blob-lrs-hot": {
+        "storage_cost": 0.024,
+        "get_request_cost": 0.0000004,
+        "put_request_cost": 0.000005,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "premium-p10": {
+        "storage_cost": 0.177,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+		"data_write": 0
+      },
+      "standard-disk": {
+        "storage_cost": 0.05,
+        "get_request_cost": 0.000000036,
+        "put_request_cost": 0.000000036,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  },
+  "azure-sa-east": {
+    "region_name":"Brazil South",
+    "region":"South America East",
+    "provider":"Microsoft",
+    "network_cost": {
+      "aws-us-east": 0.087,
+      "aws-us-east-2": 0.087,
+      "aws-us-west": 0.087,
+      "aws-us-west-2": 0.087,
+      "aws-ca-central": 0.087,
+      "aws-eu-west": 0.087,
+      "aws-eu-west-2": 0.087,
+      "aws-eu-central": 0.087,
+      "aws-asia-se": 0.138,
+      "aws-asia-se-2": 0.138,
+      "aws-asia-ne": 0.138,
+      "aws-asia-ne-2": 0.138,
+      "aws-asia-south": 0.138,
+      "aws-sa-east": 0.181,
+      "azure-us-east": 0.087,
+      "azure-us-west": 0.087,
+      "azure-eu-west": 0.087,
+      "azure-eu-north": 0.087,
+      "azure-asia-ne": 0.138,
+      "azure-asia-se": 0.138,
+      "azure-sa-east": 0
+    },
+    "storage_cost": {
+      "blob-lrs-cool": {
+        "storage_cost": 0.0208,
+        "get_request_cost": 0.000001,
+        "put_request_cost": 0.00001,
+        "del_request_cost": 0,
+        "data_retrieval": 0.01,
+        "data_write": 0.0025
+      },
+      "blob-lrs-hot": {
+        "storage_cost": 0.0326,
+        "get_request_cost": 0.00000056,
+        "put_request_cost": 0.000007,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "premium-p10": {
+        "storage_cost": 0.266,
+        "get_request_cost": 0,
+        "put_request_cost": 0,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      },
+      "standard-disk": {
+        "storage_cost": 0.012,
+        "get_request_cost": 3.6e-8,
+        "put_request_cost": 3.6e-8,
+        "del_request_cost": 0,
+        "data_retrieval": 0,
+        "data_write": 0
+      }
+    }
+  }
+}

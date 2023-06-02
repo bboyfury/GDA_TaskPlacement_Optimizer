@@ -1,0 +1,16 @@
+{
+  "desired_cost_spot": 0.5,
+  "allowed_cost_increasing_rate": 2, 
+  "desired_latency_spot": 0.5,
+  "allowed_latency_decreasing_rate": 0.1,
+  "get_sla": 200,
+  "put_sla": 300,
+  "storage_pct": 90,
+  "network_pct": 90,
+  "degree_of_fault": 1,
+  "allow_more_dcs":true,
+  "consistency": 3,
+  "objective":"cost",
+  "wiera_location": "aws-us-east",
+  "locale_count":1
+}
