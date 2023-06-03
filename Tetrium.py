@@ -204,7 +204,7 @@ class Tetrium:
                     )
 
                 Tshufl += UpNetworkTransferDuration
-                networkBottleNeck = max(
+                networkBottleNeck = min(
                     UpNetworkTransferDuration, DownNetworkTransferDuration)
 
                 # The number of reduce-tasks at site x is nred * rx
@@ -421,26 +421,27 @@ class Tetrium:
             fractionVariable[_dc] = model.addVar(
                 lb=0, ub=1, vtype=GRB.CONTINUOUS, name="fraction_" + _dc)
 
-        max_duration_variable = model.addVar(lb=0, name="max_duration")
+        maxDurationVariable = model.addVar(lb=0, name="max_duration")
 
         model.addConstr(gp.quicksum(
             fractionVariable[_dc] for _dc in self.dc_list) == 1, "sum_fraction_1")
         for _from in self.dc_list:
             for _to in self.dc_list:
-                networkTransferDuration = (
-                    fractionVariable[_to]
-                    * self.siteDataSize[_from]
+                UpNetworkTransferDuration = (
+                    ((1 - fractionVariable[_to])
+                     * self.siteDataSize[_from])
                     / self.monitoring_info[_from]["network_bandwidth"][_to]
                 )
-                coresNumber = self.availableCoresOfDC[_to]
-                computing_duration = (
-                    fractionVariable[_to]
-                    * self.TotalDataSize
-                    / (coresNumber)
-                )
-                model.addConstr(max_duration_variable >= networkTransferDuration +
-                                computing_duration, "duration_" + _from + "_" + _to)
-        model.setObjective(max_duration_variable, GRB.MINIMIZE)
+
+
+
+                aggregated = self.number_of_reducer * fractionVariable[_to]
+                coresNumber = self.availableCpuOfDC[_to]
+                waves = aggregated / float(coresNumber)
+                ComputationDuration = self.tred * waves
+                model.addConstr(maxDurationVariable >= UpNetworkTransferDuration +
+                                ComputationDuration, "duration_" + _from + "_" + _to)
+        model.setObjective(maxDurationVariable, GRB.MINIMIZE)
 
         model.optimize()
         if model.status == GRB.OPTIMAL:
@@ -522,7 +523,7 @@ class Tetrium:
                     )
 
                 Tshufl += UpNetworkTransferDuration
-                networkBottleNeck = max(
+                networkBottleNeck = min(
                     UpNetworkTransferDuration, DownNetworkTransferDuration)
 
                 if taskCount[_to] > 0:

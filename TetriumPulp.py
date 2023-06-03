@@ -11,8 +11,6 @@ import threading
 import json
 import math
 import time
-import gurobipy as gp
-from gurobipy import GRB
 
 sys.path.append("./gen-py")
 
@@ -36,8 +34,8 @@ class Tetrium:
     # tred is time of a reduce task, an average time for tasks.
     # however It can varies based on different factors such as memory or cpu ...
     # based on paper I assume that it takes around 8 secs for 400 reduce tasks so in each sec 50 task
-    # 10 milliscond => estimate => note that it is important to know close estimation for get presice calculation.
-    tred = 10
+    # 1.2 milliscond => estimate => note that it is important to know close estimation for get presice calculation.
+    tred = 0.12
 
 # get Fraction of task of each site=> formula is  IshufleX*(1-rx) / bUpx for transfer from
 # and for transfer to is y!=xIshufly · rx/BdownX
@@ -83,7 +81,6 @@ class Tetrium:
                 (1 - self.monitoring_info[dc]['computing_resources']['cpu_us']) * 100)
             self.siteDataSize[dc] = sum(self.data_size[dc].values())
 
-            # set monitoring info as average
             for _from in self.dc_list:
                 for _to in self.dc_list:
                     if _from == _to:
@@ -127,6 +124,7 @@ class Tetrium:
         self.printCalculatedTaskPlacement(taskPlacement)
         print("-------------------------------------------------")
         print(text)
+        # todo
         cost = self.getCost(taskPlacement)
         networkDuration, computeDuration = self.getDuration(taskPlacement)
 
@@ -165,7 +163,7 @@ class Tetrium:
 
     def printGeneralInfoOfDC(self, dc):
         print(dc + '-> Available CPU: ' +
-              self.availableCpuOfDC[dc] + ' ' + 'available Cores: ' + str(self.availableCoresOfDC[dc]))
+              self.availableCpuOfDC[dc] + '-----' + 'available Cores: ' + str(self.availableCoresOfDC[dc]))
 
     def printCalculatedTaskPlacement(self, taskPlacement):
         inv_map = {}
@@ -177,14 +175,13 @@ class Tetrium:
             print(hostname + " -> " + str(inv_map[hostname]))
 
   # ****************LP****************
-
     def getDurationUsingFraction(self, fraction):
+
         Tshufl = 0.0
         MaxDuration = 0.0
         MaxNetworkTransferDuration = 0.0
+        DownNetworkTransferDuration = 0
         MaxComputationDuration = 0.0
-
-        # model.setParam('OutputFlag', 0)  # Disable Gurobi output
 
         for _from in self.dc_list:
             UpNetworkTransferDuration = 0
@@ -215,7 +212,7 @@ class Tetrium:
                 coresNumber = self.availableCpuOfDC[_to]
                 waves = aggregated / float(coresNumber)
                 ComputationDuration = self.tred * waves
-
+# note that maximum amount of both network and compute is our measure
                 if MaxDuration < networkBottleNeck + ComputationDuration:
                     MaxNetworkTransferDuration = networkBottleNeck
                     MaxComputationDuration = ComputationDuration
@@ -233,84 +230,73 @@ class Tetrium:
         # final Output for min computation and network duration
         #
         totalDuration = sum([minNetworkDuration, minComputationDuration])
-        cost = self.getTotalCostWithFraction(self.GetRx())
-
         print('**********************')
         print('total status of current data before solving by LP')
-        print('Duration: ' + str(totalDuration))
-        print('Cost: ' + str(cost))
-        # print('Total shuffle time: ' + str(Tshufl))
-        # print('Cost: ' + str(co))
+        print('Total Duration: ' + str(totalDuration))
+        print('Total shuffle time: ' + str(Tshufl))
         # now we have computation duration and network duration
         # we should find optimal task placement.
-        # maxDurationVariable = self.getMaxDurationVariable()
-        # wanMinBudgetVariable = self.getWanMinBudgetVariable()
+        maxDurationVariable = self.getMaxDurationVariable()
         reduceTaskPlacementVariable = self.getReduceTaskPlacementVariable()
+        cost = self.getTotalCostWithFraction(self.GetRx())
+        
         # minimize query duration
-        model = gp.Model("Min query duration")
-        maxDurationVariable = model.addVar(name="maxDuration")
-        wanMinBudgetVariable = model.addVar(name="wanMinBudget", lb=0)
-        variables = [
-            (str(reduce_task_id), _to)
-            for reduce_task_id in range(0, self.number_of_reducer)
-            for _to in self.dc_list
-        ]
-
-        taskPlacement = model.addVars(
-            variables, vtype=GRB.BINARY, name="taskPlacement"
-        )
-        self.setConstraints(model, maxDurationVariable, taskPlacement,
-                            wanMinBudgetVariable)
+        model = LpProblem("Min query duration", LpMinimize)
+        self.setConstraints(model, maxDurationVariable,
+                            reduceTaskPlacementVariable)
         self.setObjective(model, maxDurationVariable,
-                          "minDurationConstraint")
-        self.setObjective(model, wanMinBudgetVariable,
-                          "wanMinBudgetConstraint")
-
-        model.write("Tetrium.lp")
+                          reduceTaskPlacementVariable)
+        solver = GUROBI(msg=self.msg, epgap=self.epgap)
+        status = model.solve(solver)
+        model.writeLP("Tetrium.lp")
+# todo
         end = time.time()
-        model.optimize()
 
-        # Get the optimal solution
-        if model.status == gp.GRB.OPTIMAL:
-            reduce_taskPlacement = self.calculateTaskPlacement(
-                taskPlacement
+        if status > 0:
+            reduce_taskPlacement = self.calculateTaskPLacement(
+                reduceTaskPlacementVariable
             )
 
             # print json.dumps(reduce_taskPlacement, indent=4, sort_keys=True)
             self.printResult(
                 reduce_taskPlacement,
-                "$"
-                + "----------------------------"
-            )
+                "$$$$$$$$$$$$$$$$$$$$$$$$"
+                + ""
+                + "total Cost: "
+                + str(cost))
             print(
                 "Take time: "
                 + str(end - generalTimer)
 
             )
-
+            #todo
             estimatedDuration = self.estimateDuration(
                 reduce_taskPlacement)
 
-            return json.dumps(estimatedDuration)
+            return json.dumps(reduce_taskPlacement)
         else:
             print("failed to determine a placement")
             return False
 
-    def calculateTaskPlacement(self, reduceTaskPlacementVariable):
-        reduceTaskPlacement = {}
+    def calculateTaskPLacement(self, reduceTasKPlacementVariable):
+        reduceTasKPlacement = {}
         for taskId in range(0, self.number_of_reducer):
             for _to in self.dc_list:
-                if reduceTaskPlacementVariable[(str(taskId), _to)].x > 0.000001:
-                    reduceTaskPlacement[taskId] = _to
-        taskSizes = self.getTasksSize(reduceTaskPlacement)
+                if (
+                    reduceTasKPlacementVariable[(str(taskId), _to)].varValue
+                    > 0.000001
+                ):
+                    reduceTasKPlacement[taskId] = _to
+                    # todo
+        taskSizes = self.getTasksSize(reduceTasKPlacement)
         sortedTaskSizes = {k: v for k, v in sorted(
             taskSizes.items(), key=lambda item: item[1], reverse=True)}
+        # sort tasks (biggest task comes first)
 
-        # Sort tasks (biggest task comes first)
-        sortedReduceTaskPlacement = {k: reduceTaskPlacement[k] for k in sorted(
-            reduceTaskPlacement, key=lambda x: sortedTaskSizes[x], reverse=True)}
+        sortedReduceTasKPlacement = {k: reduceTasKPlacement[k] for k in sorted(
+            reduceTasKPlacement, key=lambda x: sortedTaskSizes[x], reverse=True)}
 
-        return sortedReduceTaskPlacement
+        return sortedReduceTasKPlacement
 
     def getExpectedDuration(self, task_id, _to):
         max_expected_networkTransferDuration = 0
@@ -337,97 +323,115 @@ class Tetrium:
             estimatedDuration[task_index]["expected_duration"] = expected_duration
         return estimatedDuration
 
-    def setConstraints(self, model, maxDurationVariable, reduceTaskPlacementVariable, wanMinBudgetVariable):
-        # xrx == 1
+    def setConstraints(self, model, maxDurationVariable, reduceTaskPlacementVariable):
+
+        # xrx==1
         for reduce_task_id in range(0, self.number_of_reducer):
-            model.addConstr(gp.quicksum(reduceTaskPlacementVariable[(str(reduce_task_id), _to)] for _to in self.dc_list) == 1.0,
-                            name="For each partition (reducer id: " + str(reduce_task_id) + ")")
-
-        # Find Tshufl/network transfer duration of reduce-stage
-        for _from in self.dc_list:
-            for _to in self.dc_list:
-                UpNetworkTransferDuration = gp.quicksum(((1 - reduceTaskPlacementVariable[(str(reduce_task_id), _to)]) *
-                                                        self.data_size[_from][str(reduce_task_id)]) /
-                                                        self.monitoring_info[_from]["network_bandwidth"][_to]
-                                                        for reduce_task_id in range(0, self.number_of_reducer))
-
-                DownNetworkTransferDuration = gp.quicksum((reduceTaskPlacementVariable[(str(reduce_task_id), _to)] *
-                                                          self.data_size[_from][str(reduce_task_id)]) /
-                                                          self.monitoring_info[_to]["network_bandwidth"][_from]
-                                                          for reduce_task_id in range(0, self.number_of_reducer))
-
-                Tshufle = model.addVar(name=f"Tshufle_{_from}_{_to}")
-                model.addConstr(Tshufle >= UpNetworkTransferDuration)
-                model.addConstr(Tshufle >= DownNetworkTransferDuration)
-
-                aggregated = self.number_of_reducer * \
+            # for each DC sum of fractions should equal to 1
+            model += (
+                lpSum(
                     reduceTaskPlacementVariable[(str(reduce_task_id), _to)]
-                coresNumber = self.availableCpuOfDC[_to]
-                waves = aggregated / float(coresNumber)
-                Tred = self.tred * waves
-                model.addConstr(Tred >= self.tred * waves)
-                model.addConstr(maxDurationVariable >= Tshufle + Tred)
+                    for _to in self.dc_list
+                )
+                == 1.0,
+                "For each partition (reducer id: " + str(reduce_task_id) + ")",
+            )
 
-                # Knob:
+        IshufleUp = {}
+        IshufleDown = {}
+        aggregated_size = {}
+        taskCount = {}
+        rx = {}
+        # X ixShufle // find data need to be go for site x
+
+        for _from in self.dc_list:
+            IshufleUp[_from] = {}
+            IshufleDown[_from] = {}
+            for _to in self.dc_list:
+
+                IshufleUp[_from][_to] = lpSum(
+                    (reduceTaskPlacementVariable[(str(reduce_task_id), _to)])
+                    * self.data_size[_from][str(reduce_task_id)]
+                    for reduce_task_id in range(0, self.number_of_reducer)
+                )
+                if _to != _from:
+                    IshufleDown[_from][_to] = lpSum(
+                        reduceTaskPlacementVariable[(str(reduce_task_id), _to)]
+                        * self.data_size[_from][str(reduce_task_id)]
+                        for reduce_task_id in range(0, self.number_of_reducer)
+                    )
+        for _to in self.dc_list:
+            aggregated_size[_to] = lpSum(
+                reduceTaskPlacementVariable[(str(reduce_task_id), _to)]
+                * self.data_size[_from][str(reduce_task_id)]
+
+                for reduce_task_id in range(0, self.number_of_reducer)
+                for _from in self.dc_list
+            )
+
+        # find Tshufl// network transfer duration of reduce-stage
+        # formula is I shufle*1-rx / bupx
+        # formula is I shufle*rx / bdown
+        for _from in self.dc_list:
+            Tshufle = 0.0
+            Tred = 0.0
+            for _to in self.dc_list:
                 if self.WAN_Knob == 0:
-                    # Min budget - min WAN usage
-                    budget = gp.quicksum(((1 - reduceTaskPlacementVariable[(str(reduce_task_id), _to)]) *
-                                          self.data_size[_from][str(reduce_task_id)])
-                                         for reduce_task_id in range(0, self.number_of_reducer)
-                                         for _from in self.dc_list
-                                         for _to in self.dc_list)
-                    model.addConstr(wanMinBudgetVariable == budget)
+                    Tshufle = lpSum(
+                        reduceTaskPlacementVariable[(str(reduce_task_id), _to)]
+                        * self.data_size[_from][str(reduce_task_id)]
+                        for reduce_task_id in range(0, self.number_of_reducer)
+                        for _from in self.dc_list
+                        for _to in self.dc_list
+                    )
+                else:
+                    Tshufle = (
+                        (1 - IshufleUp[_from][_to])
+                        / self.monitoring_info[_from]["network_bandwidth"][_to]
+                    )
+                    if _to != _from:
+                        Tshufle = (
+                            IshufleDown[_from][_to]
+                            / self.monitoring_info[_to]["network_bandwidth"][_from]
+                        )
 
-    def setObjective(self, model, variable, name):
-        model.setObjective(variable, gp.GRB.MINIMIZE)
+
+                    Tred = aggregated_size[_to] / (
+                        self.availableCoresOfDC[_to]
+
+                    )
+
+                model += maxDurationVariable >= Tshufle + Tred
+
+    def setObjective(self, model, maxDurationVariable, taskPlacement_variable):
+        model += maxDurationVariable, "minDurationConstraint"
 
     def getMaxDurationVariable(self):
-        maxDurationvariable = gp.Model()
-        maxDurationvariable.setParam(
-            'OutputFlag', 0)  # Disable Gurobi output
-
-        maxDuration = maxDurationvariable.addVar(lb=0, name="maxDuration")
-
-        return maxDuration
-
-    def getWanMinBudgetVariable(self):
-        wanMinBudgetVariable = gp.Model()
-        wanMinBudgetVariable.setParam(
-            'OutputFlag', 0)  # Disable Gurobi output
-
-        wanMinBudget = wanMinBudgetVariable.addVar(lb=0, name="wanMinBudget")
-
-        return wanMinBudget
+        maxDurationvariable = LpVariable("maxDuration", 0)
+        return maxDurationvariable
 
     def getReduceTaskPlacementVariable(self):
-        reduceTaskPlacementVariable = gp.Model()
-        reduceTaskPlacementVariable.setParam(
-            'OutputFlag', 0)  # Disable Gurobi output
-
-        variables = [
-            (str(reduce_task_id), _to)
-            for reduce_task_id in range(0, self.number_of_reducer)
-            for _to in self.dc_list
-        ]
-
-        taskPlacement = reduceTaskPlacementVariable.addVars(
-            variables, vtype=GRB.BINARY, name="taskPlacement"
+        reduceTaskPlacementVariable = LpVariable.dicts(
+            "taskPlacement",
+            [
+                (str(reduce_task_id), _to)
+                for reduce_task_id in range(0, self.number_of_reducer)
+                for _to in self.dc_list
+            ],
+            0,
+            1,
+            LpBinary,
         )
-
-        return taskPlacement
+        return reduceTaskPlacementVariable
 
     def GetRx(self):
-        # model = LpProblem("min query duration", LpMinimize)
-        model = gp.Model("min query duration")
-        fractionVariable = {}
-        for _dc in self.dc_list:
-            fractionVariable[_dc] = model.addVar(
-                lb=0, ub=1, vtype=GRB.CONTINUOUS, name="fraction_" + _dc)
-
-        maxDurationVariable = model.addVar(lb=0, name="max_duration")
-
-        model.addConstr(gp.quicksum(
-            fractionVariable[_dc] for _dc in self.dc_list) == 1, "sum_fraction_1")
+        model = LpProblem("min query duration", LpMinimize)
+        fractionVariable = LpVariable.dicts(
+            "fraction", [_dc for _dc in self.dc_list], 0, 1, cat="Continuous"
+        )
+        maxDurationVariable = LpVariable("max duration", 0)
+        # constraints
+        model += lpSum(fractionVariable[_dc] for _dc in self.dc_list) == 1
         for _from in self.dc_list:
             for _to in self.dc_list:
                 UpNetworkTransferDuration = (
@@ -437,17 +441,17 @@ class Tetrium:
                 )
 
 
-
                 aggregated = self.number_of_reducer * fractionVariable[_to]
                 coresNumber = self.availableCpuOfDC[_to]
                 waves = aggregated / float(coresNumber)
                 ComputationDuration = self.tred * waves
-                model.addConstr(maxDurationVariable >= UpNetworkTransferDuration +
-                                ComputationDuration, "duration_" + _from + "_" + _to)
-        model.setObjective(maxDurationVariable, GRB.MINIMIZE)
+                model += maxDurationVariable >= UpNetworkTransferDuration + ComputationDuration
+        model += maxDurationVariable, "minDuration"
+        model.writeLP("minRx.lp")
 
-        model.optimize()
-        if model.status == GRB.OPTIMAL:
+        solver = GUROBI(msg=self.msg, epgap=self.epgap)
+        status = model.solve(solver)
+        if status > 0:
             return self.getFractionValueByVariable(fractionVariable)
         else:
             return False
@@ -455,7 +459,7 @@ class Tetrium:
     def getFractionValueByVariable(self, fractionVariable):
         rx = {}
         for dc in self.dc_list:
-            rx[dc] = fractionVariable[dc].X
+            rx[dc] = float(format(fractionVariable[dc].varValue, ".16f"))
 
         return rx
 
@@ -465,8 +469,8 @@ class Tetrium:
             for _to in self.dc_list:
                 # only uplink
                 cost += (
-                    (self.siteDataSize[_from]
-                     * (1 - fraction[_to]))
+                    self.siteDataSize[_from]
+                    * fraction[_to]
                     * self.getCostFromGBBased(self.cost[_from]["network_cost"][_to])
                 )
         return cost
@@ -480,12 +484,12 @@ class Tetrium:
 
         from_to_bytes = {}
         aggregated_size = {}
-        taskCount = {}
+        task_count = {}
 
         for dc in self.dc_list:
             from_to_bytes[dc] = {}
             aggregated_size[dc] = 0
-            taskCount[dc] = 0
+            task_count[dc] = 0
 
             for _to in self.dc_list:
                 from_to_bytes[dc][_to] = 0
@@ -493,17 +497,13 @@ class Tetrium:
         for reduce_task_id in task_placement:
             _to = task_placement[reduce_task_id]
 
-            taskCount[_to] += 1
+            task_count[_to] += 1
 
             for _from in self.dc_list:
                 from_to_bytes[_from][_to] += self.data_size[_from][str(
                     reduce_task_id)]
                 aggregated_size[_to] += self.data_size[_from][str(
                     reduce_task_id)]
-
-        # Create Gurobi model
-        model = gp.Model()
-        model.setParam('OutputFlag', 0)  # Disable Gurobi output
 
         for _from in self.dc_list:
             UpNetworkTransferDuration = 0
@@ -514,13 +514,13 @@ class Tetrium:
 
             for _to in self.dc_list:
                 UpNetworkTransferDuration = (
-                    ((1 - (taskCount[_to] / self.number_of_reducer))
+                    ((1 - (self.number_of_reducer/task_count[dc]))
                      * from_to_bytes[_from][_to])
                     / self.monitoring_info[_from]["network_bandwidth"][_to]
                 )
                 if _from != _to:
                     DownNetworkTransferDuration = (
-                        (((taskCount[_to] / self.number_of_reducer))
+                        ((1 - (self.number_of_reducer/task_count[_from]))
                          * from_to_bytes[_from][_to])
                         / self.monitoring_info[_to]["network_bandwidth"][_from]
                     )
@@ -528,27 +528,22 @@ class Tetrium:
                 Tshufl += UpNetworkTransferDuration
                 networkBottleNeck = min(
                     UpNetworkTransferDuration, DownNetworkTransferDuration)
+                if task_count[_to] > 0:
 
-                if taskCount[_to] > 0:
                     # The number of reduce-tasks at site x is nred * rx
-                    aggregated = taskCount[_to] * \
-                        ((taskCount[_to] / self.number_of_reducer))
+                    aggregated = task_count[_to] * \
+                        (self.number_of_reducer/task_count[_to])
                     coresNumber = self.availableCpuOfDC[_to]
                     waves = aggregated / float(coresNumber)
                     ComputationDuration = self.tred * waves
+
                 else:
                     ComputationDuration = 0.0
 
-                # Add constraint: MaxDuration >= networkBottleNeck + ComputationDuration
-                maxDuration_variable = model.addVar(lb=0, name="maxDuration")
-                model.addConstr(maxDuration_variable >=
-                                networkBottleNeck + ComputationDuration)
-
-                # Update MaxDuration, MaxNetworkTransferDuration, MaxComputationDuration if necessary
                 if MaxDuration < networkBottleNeck + ComputationDuration:
-                    MaxDuration = networkBottleNeck + ComputationDuration
                     MaxNetworkTransferDuration = networkBottleNeck
                     MaxComputationDuration = ComputationDuration
+                    MaxDuration = networkBottleNeck + ComputationDuration
 
         return MaxNetworkTransferDuration, MaxComputationDuration
 
@@ -588,8 +583,11 @@ class Tetrium:
         server.serve()
 
 
-# ********Main Modules***********
+# *********Formuls*******
 
+# *********End of Formuls*******
+
+# ********Main Modules***********
 
     def RunOptimizer(self, input):
         timer = time.time()
@@ -604,6 +602,7 @@ class Tetrium:
 # *****************************
 
 
+# checks if the Python script is being run as the main module
 if __name__ == "__main__":
     dataplacement_server = Tetrium()
 
